@@ -18,6 +18,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
+        filmsTableView.rowHeight = 320
         
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
 
@@ -46,8 +47,28 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
-        var currentFilm = movies![indexPath.row] as! NSDictionary
+        let currentFilm = movies![indexPath.row] as! NSDictionary
+        var filmPosterUrl = (currentFilm["posters"] as! NSDictionary)["thumbnail"] as! String
+        let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
+        if let range = range {
+            filmPosterUrl = filmPosterUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
         cell.filmTitle.text = currentFilm["title"] as! String
+
+        let image_url = NSURL(string: filmPosterUrl)
+        let url_request = NSURLRequest(URL: image_url!)
+        let placeholder = UIImage(named: "no_photo")
+        cell.filmPoster.setImageWithURLRequest(url_request, placeholderImage: placeholder, success: { [weak cell] (request:NSURLRequest!,response:NSHTTPURLResponse!, image:UIImage!) -> Void in
+            if let cell_for_image = cell {
+                cell_for_image.filmPoster.image = image
+            }
+            }, failure: { [weak cell]
+                (request:NSURLRequest!,response:NSHTTPURLResponse!, error:NSError!) -> Void in
+                if let cell_for_image = cell {
+                    cell_for_image.filmPoster.image = nil
+                }
+            })
+
         return cell
     }
     
