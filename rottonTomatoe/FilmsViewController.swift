@@ -33,7 +33,6 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     var responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                     self.movies = responseDictionary["movies"] as? NSArray
                     self.filmsTableView.reloadData()
-                    NSLog("response: \(self.movies)")
                 }
             } else {
                 puts("task error: \(error)")
@@ -46,7 +45,9 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
+        let cell = filmsTableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
+        cell.selectionStyle = .None
+
         let currentFilm = movies![indexPath.row] as! NSDictionary
         var filmPosterUrl = (currentFilm["posters"] as! NSDictionary)["thumbnail"] as! String
         let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
@@ -73,6 +74,10 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +93,13 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var vc = segue.destinationViewController as! FilmsViewDetailController
+        var indexPath = filmsTableView.indexPathForCell(sender as! FilmTableViewCell)!.row
+        var cell = self.movies![indexPath]
+
+
+    }
 
     /*
     // MARK: - Navigation

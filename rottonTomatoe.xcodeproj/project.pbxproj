@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F129C561BABCA6E00C00515 /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F129C551BABCA6E00C00515 /* FilmTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		0F129C581BABDA7C00C00515 /* FilmsViewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F129C571BABDA7C00C00515 /* FilmsViewDetailController.swift */; settings = {ASSET_TAGS = (); }; };
 		0FD0CF8C1BABC381005D7135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0CF8B1BABC381005D7135 /* AppDelegate.swift */; };
 		0FD0CF911BABC381005D7135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD0CF8F1BABC381005D7135 /* Main.storyboard */; };
 		0FD0CF931BABC381005D7135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FD0CF921BABC381005D7135 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		0F129C551BABCA6E00C00515 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
+		0F129C571BABDA7C00C00515 /* FilmsViewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmsViewDetailController.swift; sourceTree = "<group>"; };
 		0FD0CF881BABC381005D7135 /* rottonTomatoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rottonTomatoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FD0CF8B1BABC381005D7135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FD0CF901BABC381005D7135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				0FD0CF971BABC381005D7135 /* Info.plist */,
 				0FD0CF9D1BABC5F2005D7135 /* FilmsViewController.swift */,
 				0F129C551BABCA6E00C00515 /* FilmTableViewCell.swift */,
+				0F129C571BABDA7C00C00515 /* FilmsViewDetailController.swift */,
 			);
 			path = rottonTomatoe;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				0F129C561BABCA6E00C00515 /* FilmTableViewCell.swift in Sources */,
 				0FD0CF9E1BABC5F2005D7135 /* FilmsViewController.swift in Sources */,
 				0FD0CF8C1BABC381005D7135 /* AppDelegate.swift in Sources */,
+				0F129C581BABDA7C00C00515 /* FilmsViewDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
