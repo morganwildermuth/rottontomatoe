@@ -95,8 +95,9 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var vc = segue.destinationViewController as! FilmsViewDetailController
-        var indexPath = filmsTableView.indexPathForCell(sender as! FilmTableViewCell)!.row
-        var cell = self.movies![indexPath]
+        var indexPath = filmsTableView.indexPathForCell(sender as! FilmTableViewCell)
+        var currentFilm = self.movies![indexPath!.row] as! NSDictionary
+        vc.selectedFilm = currentFilm
 
 
     }

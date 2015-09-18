@@ -9,10 +9,14 @@
 import UIKit
 
 class FilmsViewDetailController: UIViewController {
+    var selectedFilm: NSDictionary?
 
     @IBOutlet weak var filmPoster: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let film = selectedFilm {
+            puts("\(selectedFilm!)")
+        }
 
         // Do any additional setup after loading the view.
     }
