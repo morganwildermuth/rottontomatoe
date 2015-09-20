@@ -103,12 +103,14 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.filmsTableView.reloadData()
                         self.refreshControl.endRefreshing()
                     } catch {
+                        self.view.sendSubviewToBack(self.filmsTableView)
                         self.networkAlertView.hidden = false
                         self.networkAlertLabel.text = "⚠️ Network Error"
                     }
 
                 }
             } else {
+                self.view.sendSubviewToBack(self.filmsTableView)
                 self.networkAlertView.hidden = false
                 self.networkAlertLabel.text = "⚠️ Network Error"
             }
