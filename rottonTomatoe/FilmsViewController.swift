@@ -20,7 +20,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        KVNProgress.show()
+        KVNProgress.showWithStatus("Finding movies...")
         
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
@@ -33,6 +33,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         filmsTableView.addSubview(refreshControl)
         
         loadData()
+
         KVNProgress.dismiss()
         
         // Do any additional setup after loading the view.
@@ -42,44 +43,35 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         loadData()
     }
 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        // Remove seperator inset
+        if cell.respondsToSelector("setSeparatorInset:") {
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        
+        // Prevent the cell from inheriting the Table View's margin settings
+        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        
+        // Explictly set your cell's layout margins
+        if cell.respondsToSelector("setLayoutMargins:") {
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = filmsTableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
         cell.selectionStyle = .None
         
         let currentFilm = movies![indexPath.row] as! NSDictionary
-        var filmPosterUrl = (currentFilm["posters"] as! NSDictionary)["thumbnail"] as! String
-        let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
-        if let range = range {
-            filmPosterUrl = filmPosterUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
-        }
         cell.filmTitle.text = currentFilm["title"] as! String
-        
-        let image_url = NSURL(string: filmPosterUrl)
-        let url_request = NSURLRequest(URL: image_url!)
-        let placeholder = UIImage(named: "no_photo")
-        cell.filmPoster.setImageWithURLRequest(url_request, placeholderImage: placeholder, success: { [weak cell] (request:NSURLRequest!,response:NSHTTPURLResponse!, image:UIImage!) -> Void in
-            if let cell_for_image = cell {
-                cell_for_image.filmPoster.image = image
-            }
-            }, failure: { [weak cell]
-                (request:NSURLRequest!,response:NSHTTPURLResponse!, error:NSError!) -> Void in
-                if let cell_for_image = cell {
-                    cell_for_image.filmPoster.image = nil
-                }
-            })
-        
-        let ratings = currentFilm["ratings"] as! NSDictionary
-        let criticsScore = ratings["critics_score"] as! Int
-        let audienceScore = ratings["audience_score"] as! Int
-
-        cell.criticRatingIcon.image = cell.retrieveRatingIcon(criticsScore)
-        cell.criticsRating = criticsScore
-        cell.audienceRatingIcon.image = cell.retrieveRatingIcon(audienceScore)
-        cell.audienceRating = audienceScore
-        
         cell.synopsis.text = currentFilm["synopsis"] as! String
         cell.mpaaRating.text = currentFilm["mpaa_rating"] as! String
         
+        setCellImage(cell, currentFilm: currentFilm)
+        setCellRatings(cell, currentFilm: currentFilm)
+
         return cell
     }
     
@@ -98,6 +90,44 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    private func setCellRatings(cell: FilmTableViewCell, currentFilm: NSDictionary){
+        let ratings = currentFilm["ratings"] as! NSDictionary
+        let criticsScore = ratings["critics_score"] as! Int
+        let audienceScore = ratings["audience_score"] as! Int
+        
+        cell.criticRatingIcon.image = cell.retrieveRatingIcon(criticsScore)
+        cell.criticsRating = criticsScore
+        cell.audienceRatingIcon.image = cell.retrieveRatingIcon(audienceScore)
+        cell.audienceRating = audienceScore
+    }
+
+    private func setCellImage(cell: FilmTableViewCell, currentFilm: NSDictionary){
+        var filmPosterUrl = (currentFilm["posters"] as! NSDictionary)["thumbnail"] as! String
+        let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
+        if let range = range {
+            filmPosterUrl = filmPosterUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
+        let image_url = NSURL(string: filmPosterUrl)
+        let url_request = NSURLRequest(URL: image_url!)
+        let placeholder = UIImage(named: "no_photo")
+        cell.filmPoster.setImageWithURLRequest(url_request, placeholderImage: placeholder, success: { [weak cell] (request:NSURLRequest!,response:NSHTTPURLResponse!, image:UIImage!) -> Void in
+            if let cell_for_image = cell {
+                cell_for_image.filmPoster.image = image
+            }
+            }, failure: { [weak cell]
+                (request:NSURLRequest!,response:NSHTTPURLResponse!, error:NSError!) -> Void in
+                if let cell_for_image = cell {
+                    cell_for_image.filmPoster.image = nil
+                }
+            })
+    }
+
+    private func showNetworkError(){
+        self.view.sendSubviewToBack(self.filmsTableView)
+        self.networkAlertView.hidden = false
+        self.networkAlertLabel.text = "⚠️ Network Error"
+    }
+
     private func loadData(){
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
         
@@ -107,6 +137,12 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
             
+            if let error = error {
+                if error == -1009 {
+                    self.showNetworkError()
+                }
+            }
+
             if let data = data {
                 dispatch_async(dispatch_get_main_queue()) {
                     do {
@@ -117,14 +153,14 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     } catch {
                         self.view.sendSubviewToBack(self.filmsTableView)
                         self.networkAlertView.hidden = false
-                        self.networkAlertLabel.text = "⚠️ Network Error"
+                        self.networkAlertLabel.text = "⚠️ Invalid Film Data"
                     }
 
                 }
             } else {
                 self.view.sendSubviewToBack(self.filmsTableView)
                 self.networkAlertView.hidden = false
-                self.networkAlertLabel.text = "⚠️ Network Error"
+                self.networkAlertLabel.text = "⚠️ No Films Retrieved"
             }
         });
         
