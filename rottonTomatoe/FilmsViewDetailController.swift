@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import JTProgressHUD
 
 class FilmsViewDetailController: UIViewController {
     var selectedFilm: NSDictionary?
-
+    
     @IBOutlet weak var filmPoster: UIImageView!
     @IBOutlet weak var filmTitle: UILabel!
     @IBOutlet weak var filmDetailsView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        JTProgressHUD.show()
         if let film = selectedFilm {
-
+            
             filmTitle.text = film["title"] as! String
-
+            
             var filmPosterUrl = (film["posters"] as! NSDictionary)["thumbnail"] as! String
             let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
             if let range = range {
@@ -37,10 +40,8 @@ class FilmsViewDetailController: UIViewController {
                     (request:NSURLRequest!,response:NSHTTPURLResponse!, error:NSError!) -> Void in
                     filmPoster!.image = nil
                 })
-
-
         }
-
+        JTProgressHUD.hide()
         // Do any additional setup after loading the view.
     }
 

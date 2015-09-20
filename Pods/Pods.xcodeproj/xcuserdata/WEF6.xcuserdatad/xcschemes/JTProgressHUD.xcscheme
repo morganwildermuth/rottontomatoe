@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BF3BF1EDA5FAA1DDED964B5"
-               BuildableName = "AFNetworking.framework"
-               BlueprintName = "AFNetworking"
+               BlueprintIdentifier = "B03576734CB7C733A0BCC32B"
+               BuildableName = "JTProgressHUD.framework"
+               BlueprintName = "JTProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

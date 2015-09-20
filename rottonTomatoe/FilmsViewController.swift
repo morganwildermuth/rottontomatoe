@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import JTProgressHUD
 
 class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -16,6 +17,8 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        JTProgressHUD.show()
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
         filmsTableView.rowHeight = 320
@@ -40,14 +43,14 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         });
         
         task.resume()
-
+        JTProgressHUD.hide()
         // Do any additional setup after loading the view.
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = filmsTableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
         cell.selectionStyle = .None
-
+        
         let currentFilm = movies![indexPath.row] as! NSDictionary
         var filmPosterUrl = (currentFilm["posters"] as! NSDictionary)["thumbnail"] as! String
         let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
@@ -55,7 +58,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             filmPosterUrl = filmPosterUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
         }
         cell.filmTitle.text = currentFilm["title"] as! String
-
+        
         let image_url = NSURL(string: filmPosterUrl)
         let url_request = NSURLRequest(URL: image_url!)
         let placeholder = UIImage(named: "no_photo")
@@ -74,9 +77,9 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        
     }
-
+    
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     }
     
@@ -98,8 +101,8 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var indexPath = filmsTableView.indexPathForCell(sender as! FilmTableViewCell)
         var currentFilm = self.movies![indexPath!.row] as! NSDictionary
         vc.selectedFilm = currentFilm
-
-
+        
+        
     }
 
     /*
