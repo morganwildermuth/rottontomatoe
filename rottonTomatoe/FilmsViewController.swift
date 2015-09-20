@@ -12,18 +12,23 @@ import JTProgressHUD
 
 class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var networkAlertView: UIView!
+    @IBOutlet weak var networkAlertLabel: UILabel!
     @IBOutlet weak var filmsTableView: UITableView!
     var movies: NSArray?
     
+    override func viewWillAppear(animated: Bool) {
+        JTProgressHUD.show()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        JTProgressHUD.show()
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
         filmsTableView.rowHeight = 320
+        networkAlertView.hidden = true
         
-        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
+        let url = NSURL(string: "https://gist.gsercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
 
         let request = NSURLRequest(URL: url)
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -38,7 +43,9 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.filmsTableView.reloadData()
                 }
             } else {
-                puts("task error: \(error)")
+                JTProgressHUD.hide()
+                self.networkAlertView.hidden = false
+                self.networkAlertLabel.text = "⚠️ Network Error"
             }
         });
         
