@@ -15,12 +15,29 @@ class FilmsViewDetailController: UIViewController {
     @IBOutlet weak var filmPoster: UIImageView!
     @IBOutlet weak var filmTitle: UILabel!
     @IBOutlet weak var filmDetailsView: UIView!
-    
+    @IBOutlet weak var filmSynopsis: UILabel!
+    @IBOutlet weak var filmMpaaRating: UILabel!
+    @IBOutlet weak var criticsRatingIcon: UIImageView!
+    @IBOutlet weak var audienceRatingLabel: UILabel!
+    @IBOutlet weak var criticsRatingLabel: UILabel!
+    @IBOutlet weak var audienceRatingIcon: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     
         if let film = selectedFilm {
             
+            let ratings = film["ratings"] as! NSDictionary
+            let criticsScore = ratings["critics_score"] as! Int
+            let audienceScore = ratings["audience_score"] as! Int
+            
+            audienceRatingLabel.text = String(audienceScore)
+            criticsRatingLabel.text = String(criticsScore)
+            let cell = FilmTableViewCell()
+            criticsRatingIcon.image = cell.retrieveRatingIcon(criticsScore)
+            audienceRatingIcon.image = cell.retrieveRatingIcon(audienceScore)
+            filmSynopsis.text = film["synopsis"] as! String
+            filmMpaaRating.text = film["mpaa_rating"] as! String
             filmTitle.text = film["title"] as! String
             self.navigationController?.navigationBar.topItem!.title = "Films"
             self.title = filmTitle.text
@@ -56,7 +73,7 @@ class FilmsViewDetailController: UIViewController {
     private func moveFilmDetailsView(){
         if filmDetailsViewActive{
             UIView.animateWithDuration(1, animations:  {
-            self.filmDetailsView.frame = CGRect(x: 0, y: 650, width: self.filmDetailsView.frame.width, height: self.filmDetailsView.frame.height)
+            self.filmDetailsView.frame = CGRect(x: 0, y: 630, width: self.filmDetailsView.frame.width, height: self.filmDetailsView.frame.height)
             })
         } else {
             UIView.animateWithDuration(1, animations:  {
@@ -66,11 +83,7 @@ class FilmsViewDetailController: UIViewController {
     }
 
     @IBAction func onTap(sender: AnyObject) {
-        puts("toggle!")
         toggleFilmDetailsView()
-    }
-    
-    @IBAction func onSwipe(sender: AnyObject) {
     }
     
     override func didReceiveMemoryWarning() {
