@@ -17,7 +17,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var filmsTableView: UITableView!
     var movies: NSArray?
     var refreshControl: UIRefreshControl!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         KVNProgress.show()
@@ -67,7 +67,18 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell_for_image.filmPoster.image = nil
                 }
             })
+        
+        let ratings = currentFilm["ratings"] as! NSDictionary
+        let criticsScore = ratings["critics_score"] as! Int
+        let audienceScore = ratings["audience_score"] as! Int
 
+        cell.criticRatingIcon.image = cell.retrieveRatingIcon(criticsScore)
+        cell.criticsRating = criticsScore
+        cell.audienceRatingIcon.image = cell.retrieveRatingIcon(audienceScore)
+        cell.audienceRating = audienceScore
+        
+        cell.synopsis.text = currentFilm["synopsis"] as! String
+        
         return cell
     }
     

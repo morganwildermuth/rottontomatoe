@@ -64,5 +64,98 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rottonTomatoe/FilmTableViewCell.swift"
+            timestampString = "464427928.906449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "FilmTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rottonTomatoe.FilmTableViewCell.ratingIcon.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
+                  moduleName = "rottonTomatoe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmTableViewCell.swift"
+                  timestampString = "464424972.641686"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rottonTomatoe.FilmTableViewCell.ratingIcon.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
+                  moduleName = "rottonTomatoe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmTableViewCell.swift"
+                  timestampString = "464424972.641911"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rottonTomatoe.FilmTableViewCell.ratingIcon.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
+                  moduleName = "rottonTomatoe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmTableViewCell.swift"
+                  timestampString = "464424972.642057"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rottonTomatoe.FilmTableViewCell.init (rottonTomatoe.FilmTableViewCell.Type)(style : C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; rottonTomatoe.FilmTableViewCell"
+                  moduleName = "rottonTomatoe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmTableViewCell.swift"
+                  timestampString = "464424972.642203"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "rottonTomatoe.FilmTableViewCell.init (rottonTomatoe.FilmTableViewCell.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;rottonTomatoe.FilmTableViewCell&gt;"
+                  moduleName = "rottonTomatoe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmTableViewCell.swift"
+                  timestampString = "464424972.642346"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "138">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
