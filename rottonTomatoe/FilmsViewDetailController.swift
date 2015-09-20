@@ -21,6 +21,9 @@ class FilmsViewDetailController: UIViewController {
         if let film = selectedFilm {
             
             filmTitle.text = film["title"] as! String
+            self.navigationController?.navigationBar.topItem!.title = "Films"
+            self.title = filmTitle.text
+
             
             var filmPosterUrl = (film["posters"] as! NSDictionary)["thumbnail"] as! String
             let range = filmPosterUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)

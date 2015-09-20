@@ -17,6 +17,7 @@ class FilmTableViewCell: UITableViewCell {
     @IBOutlet weak var filmTitle: UILabel!
     @IBOutlet weak var filmPoster: UIImageView!
     @IBOutlet weak var criticRatingIcon: UIImageView!
+    @IBOutlet weak var mpaaRating: UILabel!
     
     @IBOutlet weak var audienceRatingIcon: UIImageView!
     override func awakeFromNib() {

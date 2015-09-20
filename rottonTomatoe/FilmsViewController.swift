@@ -11,7 +11,7 @@ import AFNetworking
 import KVNProgress
 
 class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     @IBOutlet weak var networkAlertView: UIView!
     @IBOutlet weak var networkAlertLabel: UILabel!
     @IBOutlet weak var filmsTableView: UITableView!
@@ -78,6 +78,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.audienceRating = audienceScore
         
         cell.synopsis.text = currentFilm["synopsis"] as! String
+        cell.mpaaRating.text = currentFilm["mpaa_rating"] as! String
         
         return cell
     }
