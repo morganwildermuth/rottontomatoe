@@ -24,7 +24,7 @@
                   moduleName = "rottonTomatoe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmsViewController.swift"
-                  timestampString = "464419030.258302"
+                  timestampString = "464420710.646578"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -39,7 +39,7 @@
                   moduleName = "rottonTomatoe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmsViewController.swift"
-                  timestampString = "464419030.258606"
+                  timestampString = "464420710.646801"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -54,12 +54,12 @@
                   moduleName = "rottonTomatoe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/WEF6/Desktop/coding/ios/codepath/week1/rottonTomatoe/rottonTomatoe/FilmsViewController.swift"
-                  timestampString = "464419030.258832"
+                  timestampString = "464420710.646922"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>

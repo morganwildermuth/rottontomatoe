@@ -16,44 +16,34 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var networkAlertLabel: UILabel!
     @IBOutlet weak var filmsTableView: UITableView!
     var movies: NSArray?
-    
+    var refreshControl: UIRefreshControl!
     override func viewWillAppear(animated: Bool) {
         JTProgressHUD.show()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        JTProgressHUD.show()
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
         filmsTableView.rowHeight = 320
         networkAlertView.hidden = true
         
-        let url = NSURL(string: "https://gist.gsercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
-
-        let request = NSURLRequest(URL: url)
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        filmsTableView.addSubview(refreshControl)
         
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            
-            if let data = data {
-                dispatch_async(dispatch_get_main_queue()) {
-                    var responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                    self.movies = responseDictionary["movies"] as? NSArray
-                    self.filmsTableView.reloadData()
-                }
-            } else {
-                JTProgressHUD.hide()
-                self.networkAlertView.hidden = false
-                self.networkAlertLabel.text = "⚠️ Network Error"
-            }
-        });
+        loadData()
         
-        task.resume()
         JTProgressHUD.hide()
         // Do any additional setup after loading the view.
     }
     
+    func refresh(sender: AnyObject){
+        loadData()
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = filmsTableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
         cell.selectionStyle = .None
@@ -96,6 +86,32 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             return 0
         }
+    }
+    
+    private func loadData(){
+        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
+        
+        let request = NSURLRequest(URL: url)
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+            
+            if let data = data {
+                dispatch_async(dispatch_get_main_queue()) {
+                    var responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+                    self.movies = responseDictionary["movies"] as? NSArray
+                    self.filmsTableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
+                JTProgressHUD.hide()
+                self.networkAlertView.hidden = false
+                self.networkAlertLabel.text = "⚠️ Network Error"
+            }
+        });
+        
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
