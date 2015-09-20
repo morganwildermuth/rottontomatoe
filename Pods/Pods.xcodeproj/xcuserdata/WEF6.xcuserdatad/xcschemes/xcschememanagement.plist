@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JTProgressHUD.xcscheme</key>
+		<key>KVNProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>43550B3B430B86F83948DFBDCC5F0677</key>
+		<key>26B8DDA27E363508160E30B8B998BCF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74A0678E2E492C4C7265739AEAA83ED4</key>
+		<key>6E0EE7B5B6F23B29B5367C52BF641954</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F765A8D8C044CB4637DA207E4BFE3002</key>
+		<key>8CFACF50C5439BA7FCB3BDD2EEDAA567</key>
 		<dict>
 			<key>primary</key>
 			<true/>

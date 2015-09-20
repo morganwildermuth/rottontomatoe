@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B03576734CB7C733A0BCC32B"
-               BuildableName = "JTProgressHUD.framework"
-               BlueprintName = "JTProgressHUD"
+               BlueprintIdentifier = "51CB03E2807E04F8CDDC5C0A"
+               BuildableName = "KVNProgress.framework"
+               BlueprintName = "KVNProgress"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

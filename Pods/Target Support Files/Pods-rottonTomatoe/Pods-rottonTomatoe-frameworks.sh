@@ -53,9 +53,9 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-rottonTomatoe/AFNetworking.framework'
-  install_framework 'Pods-rottonTomatoe/JTProgressHUD.framework'
+  install_framework 'Pods-rottonTomatoe/KVNProgress.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-rottonTomatoe/AFNetworking.framework'
-  install_framework 'Pods-rottonTomatoe/JTProgressHUD.framework'
+  install_framework 'Pods-rottonTomatoe/KVNProgress.framework'
 fi

@@ -8,7 +8,7 @@
 
 import UIKit
 import AFNetworking
-import JTProgressHUD
+import KVNProgress
 
 class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,13 +17,11 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var filmsTableView: UITableView!
     var movies: NSArray?
     var refreshControl: UIRefreshControl!
-    override func viewWillAppear(animated: Bool) {
-        JTProgressHUD.show()
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        KVNProgress.show()
         
-        JTProgressHUD.show()
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
         filmsTableView.rowHeight = 320
@@ -35,8 +33,8 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         filmsTableView.addSubview(refreshControl)
         
         loadData()
+        KVNProgress.dismiss()
         
-        JTProgressHUD.hide()
         // Do any additional setup after loading the view.
     }
     
@@ -99,13 +97,18 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let data = data {
                 dispatch_async(dispatch_get_main_queue()) {
-                    var responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                    self.movies = responseDictionary["movies"] as? NSArray
-                    self.filmsTableView.reloadData()
-                    self.refreshControl.endRefreshing()
+                    do {
+                        var responseDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+                        self.movies = responseDictionary["movies"] as? NSArray
+                        self.filmsTableView.reloadData()
+                        self.refreshControl.endRefreshing()
+                    } catch {
+                        self.networkAlertView.hidden = false
+                        self.networkAlertLabel.text = "⚠️ Network Error"
+                    }
+
                 }
             } else {
-                JTProgressHUD.hide()
                 self.networkAlertView.hidden = false
                 self.networkAlertLabel.text = "⚠️ Network Error"
             }

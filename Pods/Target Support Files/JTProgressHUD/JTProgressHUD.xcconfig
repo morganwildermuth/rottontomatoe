@@ -1,1 +1,0 @@
-JTPROGRESSHUD_OTHER_LDFLAGS = -framework "UIKit"

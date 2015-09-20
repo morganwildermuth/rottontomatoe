@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JTProgressHUD
 
 class FilmsViewDetailController: UIViewController {
     var selectedFilm: NSDictionary?
@@ -19,7 +18,6 @@ class FilmsViewDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        JTProgressHUD.show()
         if let film = selectedFilm {
             
             filmTitle.text = film["title"] as! String
@@ -41,7 +39,6 @@ class FilmsViewDetailController: UIViewController {
                     filmPoster!.image = nil
                 })
         }
-        JTProgressHUD.hide()
         // Do any additional setup after loading the view.
     }
 

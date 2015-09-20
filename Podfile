@@ -5,6 +5,6 @@ use_frameworks!
 
 target 'rottonTomatoe' do
   pod 'AFNetworking', '~> 2.5'
-  pod 'JTProgressHUD’
+  pod 'KVNProgress', '~> 2.2.1'
 end
 
