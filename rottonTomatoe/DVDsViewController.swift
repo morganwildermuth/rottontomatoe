@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import KVNProgress
 
-class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var networkAlertView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -28,6 +28,7 @@ class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewData
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
         filmsTableView.rowHeight = 320
+        searchBar.delegate = self
         networkAlertView.hidden = true
         
         setupRefreshController()
@@ -55,7 +56,7 @@ class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        puts("ooky")
         if searchText != "" {
             filteredMovies = movies!.filter({
                 var currentFilm = $0 as! NSDictionary
