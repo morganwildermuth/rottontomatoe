@@ -39,6 +39,9 @@ class FilmTableViewCell: UITableViewCell {
         }
     }
 
+    override func prepareForReuse() {
+        self.filmPoster.image = nil;
+    }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
