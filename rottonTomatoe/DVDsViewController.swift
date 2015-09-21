@@ -56,7 +56,6 @@ class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        puts("ooky")
         if searchText != "" {
             filteredMovies = movies!.filter({
                 var currentFilm = $0 as! NSDictionary
