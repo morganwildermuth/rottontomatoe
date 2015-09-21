@@ -62,6 +62,8 @@ class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var currentFilmTitle = currentFilm["title"] as! String
                 return currentFilmTitle.rangeOfString(searchText) != nil
             })
+        } else {
+            filteredMovies = []
         }
         
         if(filteredMovies!.count == 0){
@@ -240,6 +242,7 @@ class DVDsViewController: UIViewController, UITableViewDelegate, UITableViewData
             currentFilm = self.movies![indexPath!.row] as! NSDictionary
         }
         vc.selectedFilm = currentFilm
+        vc.mode = "DVDs"
         
         
     }

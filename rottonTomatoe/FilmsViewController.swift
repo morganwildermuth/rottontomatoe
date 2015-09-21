@@ -57,13 +57,14 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if searchText != "" {
             filteredMovies = movies!.filter({
                 var currentFilm = $0 as! NSDictionary
                 var currentFilmTitle = currentFilm["title"] as! String
                 return currentFilmTitle.rangeOfString(searchText) != nil
             })
+        } else {
+            filteredMovies = []
         }
 
         if(filteredMovies!.count == 0){
@@ -238,6 +239,7 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             currentFilm = self.movies![indexPath!.row] as! NSDictionary
         }
         vc.selectedFilm = currentFilm
+        vc.mode = "Films"
         
         
     }

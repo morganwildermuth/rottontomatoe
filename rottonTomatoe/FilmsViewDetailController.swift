@@ -11,6 +11,7 @@ import UIKit
 class FilmsViewDetailController: UIViewController {
     var selectedFilm: NSDictionary?
     var filmDetailsViewActive = true
+    var mode: String?
     
     @IBOutlet weak var filmPoster: UIImageView!
     @IBOutlet weak var filmTitle: UILabel!
@@ -39,7 +40,7 @@ class FilmsViewDetailController: UIViewController {
             filmSynopsis.text = film["synopsis"] as! String
             filmMpaaRating.text = film["mpaa_rating"] as! String
             filmTitle.text = film["title"] as! String
-            self.navigationController?.navigationBar.topItem!.title = "Films"
+            self.navigationController?.navigationBar.topItem!.title = mode
             self.title = filmTitle.text
 
             
