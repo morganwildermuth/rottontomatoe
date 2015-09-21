@@ -16,7 +16,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        let tabBarController = UITabBarController()
+//        let myVC1 = FilmsViewController(nibName: "FilmsViewController", bundle: nil)
+//        let myVC2 = FilmsViewController(nibName: "FilmsViewController", bundle: nil)
+//        let controllers = [myVC1, myVC2]
+//        tabBarController.viewControllers = controllers
+//        window?.rootViewController = tabBarController
+//        let firstImage = UIImage(named: "film")
+//        let secondImage = UIImage(named: "dvd")
+//        myVC1.tabBarItem = UITabBarItem(
+//            title: "film",
+//            image: firstImage,
+//            tag: 1)
+//        myVC2.tabBarItem = UITabBarItem(
+//            title: "dvd",
+//            image: secondImage,
+//            tag:2)
+        
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
