@@ -73,7 +73,7 @@ class FilmsViewDetailController: UIViewController {
     private func moveFilmDetailsView(){
         if filmDetailsViewActive{
             UIView.animateWithDuration(1, animations:  {
-            self.filmDetailsView.frame = CGRect(x: 0, y: 630, width: self.filmDetailsView.frame.width, height: self.filmDetailsView.frame.height)
+            self.filmDetailsView.frame = CGRect(x: 0, y: 585, width: self.filmDetailsView.frame.width, height: self.filmDetailsView.frame.height)
             })
         } else {
             UIView.animateWithDuration(1, animations:  {

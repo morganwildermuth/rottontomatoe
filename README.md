@@ -6,7 +6,7 @@ Time spent: 6 hrs
 
 3 hrs to accomplish required features
 3 hrs to make required features look semi-decent
-1 hr for tab bar controller with dvds
+1 1/2 hr for tab bar controller with dvds
 
 ### Features
 

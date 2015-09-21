@@ -8,10 +8,13 @@
         <scene sceneID="q4C-Fz-xg6">
             <objects>
                 <tabBarController id="Foa-QL-v7O" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="UlY-pO-ILl">
+                    <tabBar key="tabBar" alpha="0.94999999999999996" contentMode="scaleToFill" id="UlY-pO-ILl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.2274509804" green="0.58039215690000001" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="6Rf-8s-Nao" kind="relationship" relationship="viewControllers" id="wrU-El-hKW"/>
@@ -253,8 +256,13 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSU-pH-X8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Rf-8s-Nao" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="film" id="3Z1-EF-kC5">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                    <tabBarItem key="tabBarItem" title="" image="film" selectedImage="film" id="3Z1-EF-kC5">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tAT-Gl-4io"/>
@@ -397,13 +405,23 @@
         <scene sceneID="BS9-T5-AbD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7O1-nj-hmL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="dvd" id="guh-6q-5zK">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                    <tabBarItem key="tabBarItem" title="" image="dvd" selectedImage="dvd" id="guh-6q-5zK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QsL-qp-pd2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.2274509804" green="0.58039215690000001" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -422,4 +440,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="4Ls-nR-peM"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.82796219609999999" blue="0.3683968862" alpha="1" colorSpace="calibratedRGB"/>
 </document>
