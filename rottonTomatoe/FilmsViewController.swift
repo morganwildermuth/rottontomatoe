@@ -157,7 +157,11 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let placeholder = UIImage(named: "no_photo")
         cell.filmPoster.setImageWithURLRequest(url_request, placeholderImage: placeholder, success: { [weak cell] (request:NSURLRequest!,response:NSHTTPURLResponse!, image:UIImage!) -> Void in
             if let cell_for_image = cell {
-                cell_for_image.filmPoster.image = image
+                cell_for_image.filmPoster.alpha = 0
+                UIView.animateWithDuration(1.5, animations: {
+                    cell_for_image.filmPoster.image = image
+                    cell_for_image.filmPoster.alpha = 1.0
+                })
             }
             }, failure: { [weak cell]
                 (request:NSURLRequest!,response:NSHTTPURLResponse!, error:NSError!) -> Void in
