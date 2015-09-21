@@ -10,39 +10,78 @@ import UIKit
 import AFNetworking
 import KVNProgress
 
-class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var networkAlertView: UIView!
     @IBOutlet weak var networkAlertLabel: UILabel!
     @IBOutlet weak var filmsTableView: UITableView!
+    var searchActive : Bool = false
     var movies: NSArray?
+    var filteredMovies: NSArray?
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         KVNProgress.showWithStatus("Finding movies...")
         
         filmsTableView.dataSource = self;
         filmsTableView.delegate = self;
+        searchBar.delegate = self
         filmsTableView.rowHeight = 320
         networkAlertView.hidden = true
         
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        filmsTableView.addSubview(refreshControl)
-        
+        setupRefreshController()
         loadData()
 
         KVNProgress.dismiss()
         
         // Do any additional setup after loading the view.
     }
+  
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText != "" {
+            filteredMovies = movies!.filter({
+                var currentFilm = $0 as! NSDictionary
+                var currentFilmTitle = currentFilm["title"] as! String
+                return currentFilmTitle.rangeOfString(searchText) != nil
+            })
+        }
+
+        if(filteredMovies!.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.filmsTableView.reloadData()
+    }
+
     func refresh(sender: AnyObject){
         loadData()
     }
-
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         // Remove seperator inset
         if cell.respondsToSelector("setSeparatorInset:") {
@@ -63,8 +102,13 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = filmsTableView.dequeueReusableCellWithIdentifier("filmCell", forIndexPath: indexPath) as! FilmTableViewCell
         cell.selectionStyle = .None
+        var currentFilm: NSDictionary
+        if searchActive {
+            currentFilm = filteredMovies![indexPath.row] as! NSDictionary
+        } else {
+            currentFilm = movies![indexPath.row] as! NSDictionary
+        }
         
-        let currentFilm = movies![indexPath.row] as! NSDictionary
         cell.filmTitle.text = currentFilm["title"] as! String
         cell.synopsis.text = currentFilm["synopsis"] as! String
         cell.mpaaRating.text = currentFilm["mpaa_rating"] as! String
@@ -75,14 +119,15 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchActive {
+            if let movieCount = filteredMovies?.count {
+                return movieCount
+            }
+        }
         if let movieCount = movies?.count {
             return movieCount
         } else {
@@ -126,6 +171,13 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.sendSubviewToBack(self.filmsTableView)
         self.networkAlertView.hidden = false
         self.networkAlertLabel.text = "⚠️ Network Error"
+    }
+
+    private func setupRefreshController(){
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        filmsTableView.addSubview(refreshControl)
     }
 
     private func loadData(){
@@ -175,7 +227,12 @@ class FilmsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var vc = segue.destinationViewController as! FilmsViewDetailController
         var indexPath = filmsTableView.indexPathForCell(sender as! FilmTableViewCell)
-        var currentFilm = self.movies![indexPath!.row] as! NSDictionary
+        var currentFilm: NSDictionary
+        if searchActive {
+            currentFilm = self.filteredMovies![indexPath!.row] as! NSDictionary
+        } else {
+            currentFilm = self.movies![indexPath!.row] as! NSDictionary
+        }
         vc.selectedFilm = currentFilm
         
         

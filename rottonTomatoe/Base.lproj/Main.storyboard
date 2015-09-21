@@ -34,11 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.65000000000000002" contentMode="scaleToFill" id="J2O-vb-3c0">
-                                <rect key="frame" x="0.0" y="59" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="61" width="320" height="32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wmz-aT-eb5">
-                                        <rect key="frame" x="8" y="8" width="304" height="32"/>
+                                        <rect key="frame" x="8" y="0.0" width="304" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                                 <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="352" sectionHeaderHeight="28" sectionFooterHeight="28" id="34e-ja-Q3p">
-                                <rect key="frame" x="15" y="74" width="290" height="494"/>
+                                <rect key="frame" x="15" y="107" width="290" height="451"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -124,11 +124,16 @@
                                             <outlet property="filmTitle" destination="gTW-JQ-OrO" id="7pe-6X-44u"/>
                                             <outlet property="mpaaRating" destination="5ZH-oX-xdJ" id="3rp-tq-8s1"/>
                                             <outlet property="synopsis" destination="8AR-vp-vaP" id="7IB-ir-utB"/>
-                                            <segue destination="bsw-Cr-08W" kind="push" id="giJ-aN-tTW"/>
+                                            <segue destination="bsw-Cr-08W" kind="push" identifier="filmDetails" id="giJ-aN-tTW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" id="obM-aV-2VV">
+                                <rect key="frame" x="15" y="63" width="290" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -140,6 +145,7 @@
                         <outlet property="filmsTableView" destination="34e-ja-Q3p" id="f22-xK-Fmp"/>
                         <outlet property="networkAlertLabel" destination="Wmz-aT-eb5" id="we1-fD-BaG"/>
                         <outlet property="networkAlertView" destination="J2O-vb-3c0" id="m67-Ry-73j"/>
+                        <outlet property="searchBar" destination="obM-aV-2VV" id="cT4-FX-hVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -254,7 +260,6 @@
         <!--Navigation Controller-->
         <scene sceneID="jM0-LO-d0b">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jSU-pH-X8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Rf-8s-Nao" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="film" selectedImage="film" id="3Z1-EF-kC5">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
@@ -280,6 +285,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AbY-DD-Ygb"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jSU-pH-X8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="173" y="379"/>
         </scene>
@@ -291,24 +297,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.64999997615814209" contentMode="scaleToFill" id="yq6-Sa-9GG">
-                                <rect key="frame" x="0.0" y="59" width="320" height="40"/>
+                            <searchBar contentMode="redraw" id="yBV-An-6yv">
+                                <rect key="frame" x="15" y="63" width="290" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oOG-Pt-cpu">
-                                        <rect key="frame" x="8" y="8" width="304" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="352" sectionHeaderHeight="28" sectionFooterHeight="28" id="f4j-u4-TJ8">
-                                <rect key="frame" x="15" y="74" width="290" height="494"/>
+                                <rect key="frame" x="15" y="107" width="290" height="461"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -382,11 +377,27 @@
                                             <outlet property="filmTitle" destination="kem-BY-3Y0" id="1ko-uT-RJF"/>
                                             <outlet property="mpaaRating" destination="W1k-Jj-6RK" id="Yal-F5-TYv"/>
                                             <outlet property="synopsis" destination="XOw-kP-HCq" id="V0y-Gl-LEx"/>
-                                            <segue destination="bsw-Cr-08W" kind="push" id="4Ls-nR-peM"/>
+                                            <segue destination="bsw-Cr-08W" kind="push" identifier="filmDetails" id="4Ls-nR-peM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view alpha="0.64999997615814209" contentMode="scaleToFill" id="yq6-Sa-9GG">
+                                <rect key="frame" x="0.0" y="63" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oOG-Pt-cpu">
+                                        <rect key="frame" x="8" y="4" width="304" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -395,6 +406,7 @@
                         <outlet property="filmsTableView" destination="f4j-u4-TJ8" id="ONb-WS-Sh4"/>
                         <outlet property="networkAlertLabel" destination="oOG-Pt-cpu" id="bxX-Ke-5gc"/>
                         <outlet property="networkAlertView" destination="yq6-Sa-9GG" id="QVd-0B-Msi"/>
+                        <outlet property="searchBar" destination="yBV-An-6yv" id="GcB-91-vSg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcu-10-sdk" sceneMemberID="firstResponder"/>
