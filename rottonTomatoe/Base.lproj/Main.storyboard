@@ -14,15 +14,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="2ME-Ab-cnH"/>
-                        <segue destination="8KG-GE-czK" kind="relationship" relationship="viewControllers" id="rF7-t2-R9c"/>
+                        <segue destination="6Rf-8s-Nao" kind="relationship" relationship="viewControllers" id="wrU-El-hKW"/>
+                        <segue destination="7O1-nj-hmL" kind="relationship" relationship="viewControllers" id="cOe-qo-yl1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQD-be-xwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="-504"/>
+            <point key="canvasLocation" x="-286" y="731"/>
         </scene>
-        <!--Rotton Tomatoes-->
+        <!--Box Office-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FilmsViewController" customModule="rottonTomatoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                                             <outlet property="filmTitle" destination="gTW-JQ-OrO" id="7pe-6X-44u"/>
                                             <outlet property="mpaaRating" destination="5ZH-oX-xdJ" id="3rp-tq-8s1"/>
                                             <outlet property="synopsis" destination="8AR-vp-vaP" id="7IB-ir-utB"/>
-                                            <segue destination="bsw-Cr-08W" kind="push" id="xE2-w9-BjA"/>
+                                            <segue destination="bsw-Cr-08W" kind="push" id="giJ-aN-tTW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -132,7 +132,7 @@
                     <tabBarItem key="tabBarItem" title="" image="film" id="wiG-6d-xma">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Rotton Tomatoes" id="kzQ-Q8-TyS"/>
+                    <navigationItem key="navigationItem" title="Box Office" id="kzQ-Q8-TyS"/>
                     <connections>
                         <outlet property="filmsTableView" destination="34e-ja-Q3p" id="f22-xK-Fmp"/>
                         <outlet property="networkAlertLabel" destination="Wmz-aT-eb5" id="we1-fD-BaG"/>
@@ -246,14 +246,18 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1065" y="379"/>
+            <point key="canvasLocation" x="1743" y="608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jM0-LO-d0b">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSU-pH-X8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Rf-8s-Nao" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="film" id="3Z1-EF-kC5">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="tAT-Gl-4io"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nxJ-Sb-lbe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -265,13 +269,13 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="H94-3d-DOu"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AbY-DD-Ygb"/>
                     </connections>
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="173" y="379"/>
         </scene>
-        <!--Rotton Tomatoes-->
+        <!--DVDs-->
         <scene sceneID="jL8-KD-43I">
             <objects>
                 <viewController id="8KG-GE-czK" customClass="DVDsViewController" customModule="rottonTomatoe" customModuleProvider="target" sceneMemberID="viewController">
@@ -370,6 +374,7 @@
                                             <outlet property="filmTitle" destination="kem-BY-3Y0" id="1ko-uT-RJF"/>
                                             <outlet property="mpaaRating" destination="W1k-Jj-6RK" id="Yal-F5-TYv"/>
                                             <outlet property="synopsis" destination="XOw-kP-HCq" id="V0y-Gl-LEx"/>
+                                            <segue destination="bsw-Cr-08W" kind="push" id="4Ls-nR-peM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -377,10 +382,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="dvd" id="guh-6q-5zK">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" title="Rotton Tomatoes" id="y75-yB-X4k"/>
+                    <navigationItem key="navigationItem" title="DVDs" id="y75-yB-X4k"/>
                     <connections>
                         <outlet property="filmsTableView" destination="f4j-u4-TJ8" id="ONb-WS-Sh4"/>
                         <outlet property="networkAlertLabel" destination="oOG-Pt-cpu" id="bxX-Ke-5gc"/>
@@ -389,7 +391,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcu-10-sdk" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114" y="-389"/>
+            <point key="canvasLocation" x="710" y="996"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BS9-T5-AbD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7O1-nj-hmL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="dvd" id="guh-6q-5zK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QsL-qp-pd2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8KG-GE-czK" kind="relationship" relationship="rootViewController" id="1Nf-Ev-fGK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cd2-i0-RDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="173" y="1016"/>
         </scene>
     </scenes>
     <resources>
@@ -397,6 +420,6 @@
         <image name="film" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2ME-Ab-cnH"/>
+        <segue reference="4Ls-nR-peM"/>
     </inferredMetricsTieBreakers>
 </document>
